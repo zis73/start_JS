@@ -1,4 +1,4 @@
-let money = 50000,
+const money = 50000,
 income = 'Фриланс', 
 addExpenses = 'ЖКХ, питание, бензин ', 
 deposit = true,
@@ -10,6 +10,6 @@ console.log('type of money: ' + typeof(money));
 console.log('type of income: ' + typeof(income));
 console.log('type of deposit: ' + typeof(deposit));
 console.log('length of addExpenses: '+ addExpenses.length);
-console.log("Период равен " + period + " месяцям" + "\n"+ "Цель заработать " + mission + " рублей/долларов/гривен/юаней");
+console.log("Период равен " + period + " месяцям" + "\n"+ "Цель заработать " + mission + " рублей");
 console.log(addExpenses.toLowerCase().split(", "));
 console.log('budgetDay: ' + budgetDay);
