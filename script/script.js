@@ -1,3 +1,5 @@
+'use strict';
+
 let money = 50000,
   deposit = true,
   mission = 2000000,
