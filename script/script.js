@@ -37,17 +37,17 @@ console.log('Цель будет достигнута за: ' + Math.ceil(missio
 console.log('Бюджет на день: ' + budgetDay);
 
 if(budgetDay >= 1200){
-  console.log('У вас высокий уровень дохода')
+  console.log('У вас высокий уровень дохода');
 } else if (600 <= budgetDay < 1200){
-  console.log('У вас средний уровень дохода')
+  console.log('У вас средний уровень дохода');
 } else if (0 <= budgetDay < 600){
-  console.log('К сожалению у вас уровень дохода ниже среднего')
+  console.log('К сожалению у вас уровень дохода ниже среднего');
 } else{
   console.log('Что-то пошло не так')
 }
 
 switch(budgetDay > 0){
-  case budgetDay >= 1200: console.log(''У вас высокий уровень дохода');
+  case budgetDay >= 1200: console.log('У вас высокий уровень дохода');
   break;
   case 600 <= budgetDay < 1200: console.log('У вас средний уровень дохода');
   break;
