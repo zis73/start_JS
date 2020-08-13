@@ -1,7 +1,5 @@
 'use strict';
 
-let 
-  budgetDay;
 const mission = 2000000,
   income = 'Фриланс',  
   period = 10;
@@ -14,6 +12,7 @@ const amount1 = +prompt('Во сколько это обойдется?');
 const expenses2 = prompt('Введите обязательную статью расходов?');
 const amount2 = +prompt('Во сколько это обойдется?');
 
+
 const getExpensesMonth = function() {
   return amount1 + amount2;
 };
@@ -21,6 +20,7 @@ const getAccumulatedMonth = function() {
   return money - getExpensesMonth();
 };
 const accumulatedMonth = getAccumulatedMonth();
+const budgetDay = Math.ceil(accumulatedMonth / 30);
 const getTargetMonth = function() {
   return Math.ceil(mission / accumulatedMonth);
 };
@@ -39,7 +39,6 @@ const getStatusIncome = function() {
     return('Что-то пошло не так');
   }
 };
-budgetDay = Math.ceil(accumulatedMonth / 30);
 console.log(showTypeOf(money));
 console.log(showTypeOf(income));
 console.log(showTypeOf(deposit));
