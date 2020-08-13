@@ -1,16 +1,14 @@
 'use strict';
 
-let money,
-  addExpenses,
-  deposit,
-  budgetDay = money / 30;
+let 
+  budgetDay;
 const mission = 2000000,
   income = 'Фриланс',  
   period = 10;
 
-money = +prompt('Ваш месячный доход?');
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-deposit = confirm('Есть ли у вас депозит в банке?');
+const money = +prompt('Ваш месячный доход?');
+const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+const deposit = confirm('Есть ли у вас депозит в банке?');
 const expenses1 = prompt('Введите обязательную статью расходов?');
 const amount1 = +prompt('Во сколько это обойдется?');
 const expenses2 = prompt('Введите обязательную статью расходов?');
