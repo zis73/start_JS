@@ -10,15 +10,18 @@ const mission = 2000000,
   deposit = confirm('Есть ли у вас депозит в банке?'),
   period = 10;
 let money;
-
+console.log(addExpenses.split(", "));
 
 
 let start = function(){
-  money = +prompt('Ваш месячный доход?');
+    money = prompt('Ваш месячный доход?');
 
   while(!isNumber(money)){
-    money = +prompt('Ваш месячный доход?');
+    money = prompt('Ваш месячный доход?');
   }
+  // while(isNaN(parseFloat(money))){
+  //   money = prompt('Ваш месячный доход?');
+  // }
 };
 
 start();
@@ -27,13 +30,18 @@ let expenses = [];
 
 
 const getExpensesMonth = function() {
-  let sum = 0;
+  let sum = 0,
+  amount;
 
   for(let i = 0; i < 2; i++){
     expenses[i] = prompt('Введите обязательную статью расходов?');
 
-    sum += +prompt('Во сколько это обойдется?'); 
-  }
+    amount = prompt('Во сколько это обойдется?'); 
+    while(!isNumber(amount)){
+      amount = prompt('Во сколько это обойдется?'); 
+    }
+    sum += +amount;
+  };
   console.log(expenses);
   return sum;
 };
@@ -44,7 +52,12 @@ const getAccumulatedMonth = function() {
 const accumulatedMonth = getAccumulatedMonth();
 const budgetDay = Math.ceil(accumulatedMonth / 30);
 const getTargetMonth = function() {
-  return Math.ceil(mission / accumulatedMonth);
+  let result = Math.ceil(mission / accumulatedMonth);
+  if(result > 0){
+    return console.log('Цель будет достигнута за' + result + ' месяцев');
+  }else{
+    console.log('Цель достигнута не будет');
+  }
 };
 const missionMonth = mission / accumulatedMonth;
 const showTypeOf = function(data) {
@@ -68,9 +81,8 @@ let showTypeof = function(item){
 showTypeof(money);
 showTypeof(income);
 showTypeof(deposit);
-console.log('Расходы за месяц ' + getExpensesMonth());
-console.log(addExpenses.split(", "));
-console.log('Цель будет достигнута за: ' + getTargetMonth() + " месяцев");
+console.log('Расходы за месяц ' + expensesAmount);
+console.log(getTargetMonth());
 console.log("Бюджет на месяц: " + accumulatedMonth);
 console.log('Бюджет на день: ' + budgetDay);
 console.log(getStatusIncome());
