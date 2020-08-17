@@ -1,23 +1,45 @@
 'use strict';
 
+let isNumber = function(n){
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
 const mission = 2000000,
   income = 'Фриланс',  
+  addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+  deposit = confirm('Есть ли у вас депозит в банке?'),
   period = 10;
+let money;
 
-const money = +prompt('Ваш месячный доход?');
-const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-const deposit = confirm('Есть ли у вас депозит в банке?');
-const expenses1 = prompt('Введите обязательную статью расходов?');
-const amount1 = +prompt('Во сколько это обойдется?');
-const expenses2 = prompt('Введите обязательную статью расходов?');
-const amount2 = +prompt('Во сколько это обойдется?');
+
+
+let start = function(){
+  money = +prompt('Ваш месячный доход?');
+
+  while(!isNumber(money)){
+    money = +prompt('Ваш месячный доход?');
+  }
+};
+
+start();
+
+let expenses = [];
 
 
 const getExpensesMonth = function() {
-  return amount1 + amount2;
+  let sum = 0;
+
+  for(let i = 0; i < 2; i++){
+    expenses[i] = prompt('Введите обязательную статью расходов?');
+
+    sum += +prompt('Во сколько это обойдется?'); 
+  }
+  console.log(expenses);
+  return sum;
 };
+let expensesAmount = getExpensesMonth();
 const getAccumulatedMonth = function() {
-  return money - getExpensesMonth();
+  return money - expensesAmount;
 };
 const accumulatedMonth = getAccumulatedMonth();
 const budgetDay = Math.ceil(accumulatedMonth / 30);
@@ -39,9 +61,13 @@ const getStatusIncome = function() {
     return('Что-то пошло не так');
   }
 };
-console.log(showTypeOf(money));
-console.log(showTypeOf(income));
-console.log(showTypeOf(deposit));
+
+let showTypeof = function(item){
+  console.log(typeof item);
+}
+showTypeof(money);
+showTypeof(income);
+showTypeof(deposit);
 console.log('Расходы за месяц ' + getExpensesMonth());
 console.log(addExpenses.split(", "));
 console.log('Цель будет достигнута за: ' + getTargetMonth() + " месяцев");
