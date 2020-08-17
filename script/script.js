@@ -77,7 +77,7 @@ const getStatusIncome = function() {
 
 let showTypeof = function(item){
   console.log(typeof item);
-}
+};
 showTypeof(money);
 showTypeof(income);
 showTypeof(deposit);
