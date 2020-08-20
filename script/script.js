@@ -25,7 +25,6 @@ start();
 
 let expenses = [];
 
-
 const getExpensesMonth = function() {
   let sum = 0,
   amount;
