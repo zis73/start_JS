@@ -19,9 +19,6 @@ let start = function(){
   while(!isNumber(money)){
     money = prompt('Ваш месячный доход?');
   }
-  // while(isNaN(parseFloat(money))){
-  //   money = prompt('Ваш месячный доход?');
-  // }
 };
 
 start();
@@ -41,11 +38,11 @@ const getExpensesMonth = function() {
       amount = prompt('Во сколько это обойдется?'); 
     }
     sum += +amount;
-  };
+  }
   console.log(expenses);
   return sum;
 };
-let expensesAmount = getExpensesMonth();
+const expensesAmount = getExpensesMonth();
 const getAccumulatedMonth = function() {
   return money - expensesAmount;
 };
@@ -54,7 +51,7 @@ const budgetDay = Math.ceil(accumulatedMonth / 30);
 const getTargetMonth = function() {
   let result = Math.ceil(mission / accumulatedMonth);
   if(result > 0){
-    return console.log('Цель будет достигнута за' + result + ' месяцев');
+    return console.log('Цель будет достигнута за ' + result + ' месяцев');
   }else{
     console.log('Цель достигнута не будет');
   }
