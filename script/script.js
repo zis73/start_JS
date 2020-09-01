@@ -16,7 +16,7 @@ isString = function(n) {
   }
   return false;
 },
-toUpp = function(arr){
+toUpp = function(arr) {
   let str = arr.map(function(upper){
     return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
   });
