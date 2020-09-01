@@ -32,7 +32,7 @@ let money,
 
 start();
 
-let appData = {
+const appData = {
   mission: 2000000,
   budget: money,
   budgetDay: 0,
