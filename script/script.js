@@ -20,7 +20,7 @@ toUpp = function(arr) {
   let str = arr.map(function(upper){
     return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
   });
-  console.log(str);
+  console.log(str.join(', '));
 };
 let money,
     start = function() {
@@ -131,4 +131,4 @@ console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney
 for(let key in appData) {
   console.log(`Наша программа включает в себя данные: ключ ${key} и его значение`, appData[key]);
 }
-toUpp(appData.addExpenses.join(', ')); 
+toUpp(appData.addExpenses); 
