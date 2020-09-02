@@ -19,7 +19,7 @@ incomeTitle = document.querySelector('input.income-title'),
 incomeAmount = document.querySelector('.income-amount'),
 range = document.querySelector('[type="range"]');
 
-let isNumber = function(n) {
+const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 },
 isString = function(n) {
