@@ -1,4 +1,23 @@
 'use strict';
+const startButton = document.getElementById('start'),
+incomeAdd = document.getElementsByTagName('button')[0],
+expensesAdd = document.getElementsByTagName('button')[1],
+depositCheck = document.querySelector('#deposit-check'),
+additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+budgetMonthValue = document.getElementsByClassName('result-total')[0],
+budgetDayValue = document.getElementsByClassName('result-total')[1],
+expensesMonthValue = document.getElementsByClassName('result-total')[2],
+expensesTitle = document.querySelector('input.expenses-title'),
+expensesAmount = document.querySelector('.expenses-amount'),
+additionalIncomeValue = document.getElementsByClassName('result-total')[3],
+additionalExpensesValue = document.getElementsByClassName('result-total')[4],
+incomePeriodValue = document.getElementsByClassName('result-total')[5],
+targetMonthValue = document.getElementsByClassName('result-total')[6],
+salaryAmount = document.querySelector('.salary-amount'),
+incomeTitle = document.querySelector('input.income-title'),
+incomeAmount = document.querySelector('.income-amount'),
+range = document.querySelector('[type="range"]');
 
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
