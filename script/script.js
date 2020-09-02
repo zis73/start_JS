@@ -1,6 +1,6 @@
 'use strict';
 
-let isNumber = function(n) {
+const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 },
 isString = function(n) {
@@ -80,7 +80,7 @@ const appData = {
     while(!isString(addExpenses)) {
       addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
     }
-    appData.addExpenses = addExpenses.toLowerCase().split(',');
+    appData.addExpenses = addExpenses.trim().toLowerCase().split(',');
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
     for(let i = 0; i < 2; i++){
       let itemExpenses = prompt('Введите обязательную статью расходов?', 'sadik, school');
