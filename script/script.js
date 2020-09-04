@@ -19,6 +19,8 @@ book[2].before(book[5]);
 
 adv.remove();
 
+body.style.backgroundImage = 'url(image/you-dont-know-js.jpg)';
+
 titleBook.textContent = 'Книга 3. this и Прототипы Объектов';
 
 bookLi2[9].after(bookLi2[2]);
