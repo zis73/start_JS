@@ -172,7 +172,7 @@ const appData = {
     return appData.budgetMonth * periodSelect.value;
   }
 };
-salaryAmount.addEventListener('change', function() {
+salaryAmount.addEventListener('input', function() {
   if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
     start.style.pointerEvents = '';
   } else {
