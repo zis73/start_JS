@@ -92,7 +92,6 @@ const appData = {
     if(expensesItems.length === 3){
       expensesPlus.style.display = 'none';
     }
-
   },
   addIncomeBlock: function() {
     const cloneIncomeItem = incomeItem[0].cloneNode(true);
