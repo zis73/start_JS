@@ -173,8 +173,8 @@ const appData = {
   }
 };
 salaryAmount.addEventListener('change', function() {
-  if (isNumber(salaryAmount.value.trim())) {
-    start.setAttribute('disabled', '');
+  if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
+    start.style.pointerEvents = '';
   } else {
     start.style.pointerEvents = 'none';
   }
