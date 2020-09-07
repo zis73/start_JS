@@ -1,31 +1,31 @@
 'use strict';
 
 const start = document.getElementById('start'),
-btnPlus = document.getElementsByTagName('button'),
-incomePlus = btnPlus[0],
-expensesPlus = btnPlus[1],
-depositCheck = document.querySelector('#deposit-check'),
-additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
-additionalExpensesItem = document.querySelector('.additional_expenses-item'),
-budgetMonthValue = document.getElementsByClassName('result-total')[0],
-budgetDayValue = document.getElementsByClassName('result-total')[1],
-expensesMonthValue = document.getElementsByClassName('result-total')[2],
-expensesTitle = document.querySelector('input.expenses-title'),
-additionalIncomeValue = document.getElementsByClassName('result-total')[3],
-additionalExpensesValue = document.getElementsByClassName('result-total')[4],
-incomePeriodValue = document.getElementsByClassName('result-total')[5],
-targetMonthValue = document.getElementsByClassName('result-total')[6],
-salaryAmount = document.querySelector('.salary-amount'),
-incomeTitle = document.querySelector('input.income-title'),
-range = document.querySelector('[type="range"]'),
-additionalExpenses = document.querySelector('.additional_expenses'),
-periodSelect = document.querySelector('.period-select'),
-periodAmount = document.querySelector('.period-amount'),
-targetAmount = document.querySelector('.target-amount');
+  btnPlus = document.getElementsByTagName('button'),
+  incomePlus = btnPlus[0],
+  expensesPlus = btnPlus[1],
+  depositCheck = document.querySelector('#deposit-check'),
+  additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+  additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+  budgetMonthValue = document.getElementsByClassName('result-total')[0],
+  budgetDayValue = document.getElementsByClassName('result-total')[1],
+  expensesMonthValue = document.getElementsByClassName('result-total')[2],
+  expensesTitle = document.querySelector('input.expenses-title'),
+  additionalIncomeValue = document.getElementsByClassName('result-total')[3],
+  additionalExpensesValue = document.getElementsByClassName('result-total')[4],
+  incomePeriodValue = document.getElementsByClassName('result-total')[5],
+  targetMonthValue = document.getElementsByClassName('result-total')[6],
+  salaryAmount = document.querySelector('.salary-amount'),
+  incomeTitle = document.querySelector('input.income-title'),
+  range = document.querySelector('[type="range"]'),
+  additionalExpenses = document.querySelector('.additional_expenses'),
+  periodSelect = document.querySelector('.period-select'),
+  periodAmount = document.querySelector('.period-amount'),
+  targetAmount = document.querySelector('.target-amount');
 
 let expensesItems = document.querySelectorAll('.expenses-items'),
-incomeItem = document.querySelectorAll('.income-items');
-start.style.pointerEvents = 'none';
+  incomeItem = document.querySelectorAll('.income-items');
+  start.style.pointerEvents = 'none';
 
 const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -103,9 +103,9 @@ const appData = {
   },
   getExpenses: function() {
     expensesItems.forEach(function(item) {
-      const itemExpenses = item.querySelector('.expenses-title').value;
-      const cashExpenses = item.querySelector('.expenses-amount').value;
-      if(itemExpenses.trim() !== '' && cashExpenses.trim() !== ''){
+      const itemExpenses = item.querySelector('.expenses-title').value,
+        cashExpenses = item.querySelector('.expenses-amount').value;
+      if(itemExpenses.trim() !== '' && cashExpenses.trim() !== '') {
         appData.expenses[itemExpenses] = +cashExpenses;
       }
     });
@@ -115,8 +115,8 @@ const appData = {
   },
   getIncome: function() {
     incomeItem.forEach(function(item) {
-      const itemIncome = item.querySelector('.income-title').value;
-      const cashIncome = item.querySelector('.income-amount').value;
+      const itemIncome = item.querySelector('.income-title').value,
+        cashIncome = item.querySelector('.income-amount').value;
       if(itemIncome.trim() !== '' && cashIncome.trim() !== '') {
         appData.income[itemIncome] = +cashIncome;
       }
