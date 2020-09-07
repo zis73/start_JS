@@ -167,7 +167,6 @@ const appData = {
     }
   },
   getInfoDeposit: function() {
-
   },
   calcPeriod: function() {
     return appData.budgetMonth * periodSelect.value;
@@ -175,7 +174,7 @@ const appData = {
 };
 salaryAmount.addEventListener('change', function() {
   if (isNumber(salaryAmount.value.trim())) {
-    start.style.pointerEvents = '';
+    start.setAttribute('disabled', '');
   } else {
     start.style.pointerEvents = 'none';
   }
