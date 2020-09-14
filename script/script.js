@@ -45,7 +45,7 @@ isString = function(n) {
   return false;
 },
 toUpp = function(arr) {
-  let str = arr.map(function(upper){
+  let str = arr.map(function(upper) {
     return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
   });
   console.log(str.join(', '));
@@ -65,7 +65,7 @@ unBlockInput = () => {
     item.disabled = false;
     item.value = '';
   });
-}
+};
 
 const appData = {
   budget: 0,
@@ -105,9 +105,6 @@ const appData = {
   reset: function(){
     let resultTotal = document.querySelectorAll('.result-total');
 
-    // for(let key in cloneAppData){
-    //   appData[key] = cloneAppData[key];
-    // }
     periodSelect.value = 1;
     periodAmount.textContent = periodSelect.value;
 
@@ -167,7 +164,7 @@ const appData = {
   },
   getExpenses: function() {
     const _this = this;
-    expensesItems.forEach((item) =>{
+    expensesItems.forEach((item) => {
       const itemExpenses = item.querySelector('.expenses-title').value,
         cashExpenses = item.querySelector('.expenses-amount').value;
       if(itemExpenses.trim() !== '' && cashExpenses.trim() !== '') {
@@ -200,7 +197,7 @@ const appData = {
     });
   },
   getAddIncome: function() {
-    additionalIncomeItem.forEach((item) =>{
+    additionalIncomeItem.forEach((item) => {
       const itemValue = item.value.trim();
       if(itemValue !== '') {
         this.addIncome.push(itemValue);
