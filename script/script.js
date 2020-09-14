@@ -102,7 +102,7 @@ const appData = {
     cancel.style.display = 'block';
 
   },
-  reset: function(){
+  reset: function() {
     let resultTotal = document.querySelectorAll('.result-total');
 
     periodSelect.value = 1;
