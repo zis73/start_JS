@@ -31,41 +31,44 @@ let expensesItems = document.querySelectorAll('.expenses-items'),
 const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 },
-isString = function(n) {
-  if (n !== null) {
-    if(n.trim().length > 0 && !isNumber(n)) {
-      for (let i = 0; i < n.length; i++) {
-        if (isNumber(n[i])) {
-            return false;
+  isString = function(n) {
+    if (n !== null) {
+      if(n.trim().length > 0 && !isNumber(n)) {
+        for (let i = 0; i < n.length; i++) {
+          if (isNumber(n[i])) {
+              return false;
+          }
         }
+        return true;
       }
-      return true;
     }
-  }
-  return false;
-},
-toUpp = function(arr) {
-  let str = arr.map(function(upper) {
-    return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
-  });
-  console.log(str.join(', '));
-},
-blockInput = () => {
-  const blockData = document.querySelector('.data'),
-    inputs = blockData.querySelectorAll('[type="text"]');
-  inputs.forEach((item) => {
-    item.disabled = true;
-  });
+    return false;
+  },
+  toUpp = function(arr) {
+    let str = arr.map(function(upper) {
+      return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
+    });
+    console.log(str.join(', '));
+  },
+  blockInput = () => {
+    const blockData = document.querySelector('.data'),
+      inputs = blockData.querySelectorAll('[type="text"]');
+    inputs.forEach((item) => {
+      item.disabled = true;
+    });
 
-},
-unBlockInput = () => {
-  const blockData = document.querySelector('.data'),
-    inputs = blockData.querySelectorAll('[type="text"]');
-  inputs.forEach((item) => {
-    item.disabled = false;
-    item.value = '';
-  });
-};
+  },
+  unBlockInput = () => {
+    const blockData = document.querySelector('.data'),
+      inputs = blockData.querySelectorAll('[type="text"]');
+    inputs.forEach((item) => {
+      item.disabled = false;
+      item.value = '';
+    });
+  },
+  changePeriod = function() {
+    incomePeriodValue.value = this.calcPeriod();
+  };
 
 const appData = {
   budget: 0,
@@ -97,10 +100,11 @@ const appData = {
     incomePlus.disabled = true;
     expensesPlus.disabled = true;
     depositCheck.disabled = true;
-
+    
     start.style.display = 'none';
     cancel.style.display = 'block';
-
+    periodSelect.addEventListener('input', changePeriod.bind(appData));
+    cancel.addEventListener('click', appData.reset.bind(appData));
   },
   reset: function() {
     let resultTotal = document.querySelectorAll('.result-total');
@@ -136,15 +140,13 @@ const appData = {
 
   },
   showResult: function() { 
-    const _this = this;
     budgetDayValue.value = this.budgetDay;
     budgetMonthValue.value = this.budgetMonth;
     expensesMonthValue.value = this.expensesMonth;
-    additionalExpensesValue.value = _this.addExpenses.join(', ');
+    additionalExpensesValue.value = this.addExpenses.join(', ');
     additionalIncomeValue.value = this.addIncome.join(', ');
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
     incomePeriodValue.value = this.calcPeriod();
-    periodSelect.addEventListener('input', this.showResult);
   },
   addExpensesBlock: function() {
     const cloneExpensesItem = expensesItems[0].cloneNode(true);
