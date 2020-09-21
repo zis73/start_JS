@@ -31,42 +31,44 @@ let expensesItems = document.querySelectorAll('.expenses-items'),
 const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 },
-isString = function(n) {
-  if (n !== null) {
-    if(n.trim().length > 0 && !isNumber(n)) {
-      for (let i = 0; i < n.length; i++) {
-        if (isNumber(n[i])) {
-            return false;
+  isString = function(n) {
+    if (n !== null) {
+      if(n.trim().length > 0 && !isNumber(n)) {
+        for (let i = 0; i < n.length; i++) {
+          if (isNumber(n[i])) {
+              return false;
+          }
         }
+        return true;
       }
-      return true;
     }
-  }
-  return false;
-},
-toUpp = function(arr) {
-  let str = arr.map(function(upper) {
-    return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
-  });
-  console.log(str.join(', '));
-},
-blockInput = () => {
-  const blockData = document.querySelector('.data'),
-    inputs = blockData.querySelectorAll('[type="text"]');
-  inputs.forEach((item) => {
-    item.disabled = true;
-  });
+    return false;
+  },
+  toUpp = function(arr) {
+    let str = arr.map(function(upper) {
+      return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
+    });
+    console.log(str.join(', '));
+  },
+  blockInput = () => {
+    const blockData = document.querySelector('.data'),
+      inputs = blockData.querySelectorAll('[type="text"]');
+    inputs.forEach((item) => {
+      item.disabled = true;
+    });
 
-},
-unBlockInput = () => {
-  const blockData = document.querySelector('.data'),
-    inputs = blockData.querySelectorAll('[type="text"]');
-  inputs.forEach((item) => {
-    item.disabled = false;
-    item.value = '';
-  });
-};
-
+  },
+  unBlockInput = () => {
+    const blockData = document.querySelector('.data'),
+      inputs = blockData.querySelectorAll('[type="text"]');
+    inputs.forEach((item) => {
+      item.disabled = false;
+      item.value = '';
+    });
+  },
+  changePeriod = function() {
+    incomePeriodValue.value = this.calcPeriod();
+  };
 const AppData = function() {
   this.budget = 0;
   this.budgetDay = 0;
@@ -145,7 +147,6 @@ AppData.prototype.showResult = function() {
   additionalIncomeValue.value = this.addIncome.join(', ');
   targetMonthValue.value = Math.ceil(this.getTargetMonth());
   incomePeriodValue.value = this.calcPeriod();
-  periodSelect.addEventListener('input', this.showResult);
 };
 AppData.prototype.addExpensesBlock = function() {
   const cloneExpensesItem = expensesItems[0].cloneNode(true);
