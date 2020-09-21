@@ -112,7 +112,7 @@ AppData.prototype.reset = function() {
   periodAmount.textContent = periodSelect.value;
 
   unBlockInput();
-  resultTotal.forEach((item) => {
+  resultTotal.forEach(function (item){
     item.value = '';
   });
   expensesItems.forEach(function (item, i) {
@@ -165,11 +165,12 @@ AppData.prototype.addIncomeBlock = function() {
   }
 };
 AppData.prototype.getExpenses = function() {
-  expensesItems.forEach((item) => {
+  const _this = this;
+  expensesItems.forEach(function (item) {
     const itemExpenses = item.querySelector('.expenses-title').value,
       cashExpenses = item.querySelector('.expenses-amount').value;
     if(itemExpenses.trim() !== '' && cashExpenses.trim() !== '') {
-      this.expenses[itemExpenses] = +cashExpenses;
+      _this.expenses[itemExpenses] = +cashExpenses;
     }
   });
   for (let key in this.expenses) {
@@ -177,11 +178,12 @@ AppData.prototype.getExpenses = function() {
   }
 };
 AppData.prototype.getIncome = function() {
-  incomeItems.forEach((item) =>{
+  const _this = this;
+  incomeItems.forEach(function (item) {
     const itemIncome = item.querySelector('.income-title').value,
       cashIncome = item.querySelector('.income-amount').value;
     if(itemIncome.trim() !== '' && cashIncome.trim() !== '') {
-      this.income[itemIncome] = +cashIncome;
+      _this.income[itemIncome] = +cashIncome;
     }
   });
   for (let key in this.income) {
@@ -189,19 +191,21 @@ AppData.prototype.getIncome = function() {
   }
 };
 AppData.prototype.getAddExpenses = function() {
+  const _this = this;
   const  addExpenses = additionalExpensesItem.value.split(',');
-  addExpenses.forEach((item) => {
+  addExpenses.forEach(function (item) {
     item = item.trim();
     if(item !== '') {
-      this.addExpenses.push(item);
+      _this.addExpenses.push(item);
     }
   });
 };
 AppData.prototype.getAddIncome = function() {
-  additionalIncomeItem.forEach((item) => {
+  const _this = this;
+  additionalIncomeItem.forEach(function (item) {
     const itemValue = item.value.trim();
     if(itemValue !== '') {
-      this.addIncome.push(itemValue);
+      _this.addIncome.push(itemValue);
     }
   });
 };
