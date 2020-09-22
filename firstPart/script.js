@@ -1,6 +1,6 @@
 'use strict';
 
-function DomElement(selector, height, width, bg, fontSize){
+function DomElement(selector, height = '200px', width = '200px', bg = 'green', fontSize = '25px'){
   this.selector = selector;
   this.height = height;
   this.width = width;
@@ -11,8 +11,8 @@ function DomElement(selector, height, width, bg, fontSize){
 const body = document.querySelector('body');
 
 DomElement.prototype.checkSelector = function() {
-  let elem,
-    select = this.selector.substr(1);
+  let elem;
+  const select = this.selector.substr(1);
   if(this.selector[0] === '.') {
     elem = document.createElement('div');
     elem.classList.add(select);
@@ -21,15 +21,16 @@ DomElement.prototype.checkSelector = function() {
     elem.id = select;
   }
 
-  elem.style.height = this.height + 'px';
-  elem.style.width = this.width + 'px';
-  elem.style.backgroundColor = this.bg;
-  elem.style.fontSize = this.fontSize + 'px';
+  elem.style.cssText=`background-color: green;
+    width: 200px;
+    height: 200px;
+    font-size: 25px;
+  `;
   elem.textContent = 'Привет Glo academy';
   body.append(elem);
 };
 
-let domElement = new DomElement('#block', 750, 500, 'red', 15);
+const domElement = new DomElement('#block');
 
 domElement.checkSelector();
 console.log(domElement);
