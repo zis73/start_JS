@@ -150,16 +150,25 @@ AppData.prototype.showResult = function() {
 };
 AppData.prototype.addExpensesBlock = function() {
   const cloneExpensesItem = expensesItems[0].cloneNode(true);
+  cloneExpensesItem.querySelectorAll('input').forEach(function (item) {
+    item.value = '';
+});
   expensesItems[0].parentNode.insertBefore(cloneExpensesItem,expensesPlus);
   expensesItems = document.querySelectorAll('.expenses-items');
+  this.validMethod();
   if(expensesItems.length === 3){
     expensesPlus.style.display = 'none';
   }
 };
 AppData.prototype.addIncomeBlock = function() {
   const cloneIncomeItem = incomeItems[0].cloneNode(true);
+  cloneIncomeItem.querySelectorAll('input').forEach(function (item) {
+    item.value = '';
+});
   incomeItems[0].parentNode.insertBefore(cloneIncomeItem,incomePlus);
   incomeItems = document.querySelectorAll('.income-items');
+  this.validMethod();
+
   if(incomeItems.length === 3){
     incomePlus.style.display = 'none';
   }
@@ -245,6 +254,27 @@ AppData.prototype.eventListeners = function() {
       start.style.pointerEvents = 'none';
     }
   });
+  AppData.prototype.validMethod = function() {
+    let inputName = document.querySelectorAll('[placeholder="Наименование"]'),
+    inputSum = document.querySelectorAll('[placeholder="Сумма"]');
+  
+    inputName.forEach(function (item) { 
+            item.addEventListener('input', function () {
+                item.value = item.value.replace(/[^А-Яа-яЁё,.!? ]/i, '');
+            });
+    });
+    
+    inputSum.forEach(function (item) {
+        item.addEventListener('input', function () {
+            if(item.value === '0') {
+                item.value = item.value.replace(/[^1-9]/i, '');
+            }
+            item.value = item.value.replace(/[^0-9]/i, '');
+        });
+    });
+  };
+
+  appData.validMethod();
   
   start.addEventListener('click', appData.start.bind(appData));
   cancel.addEventListener('click', appData.reset.bind(appData));
