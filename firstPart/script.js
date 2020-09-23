@@ -21,11 +21,11 @@ DomElement.prototype.checkSelector = function() {
     elem.id = select;
   }
 
-  elem.style.cssText = `background-color: yellow;
-    width: 200px;
-    height: 200px;
-    font-size: 25px;
-  `;
+  elem.style.cssText = `background-color:${this.bg};
+  font-size:${this.fontSize};
+  width:${this.width};
+  height:${this.height} `;
+
   elem.textContent = 'Привет Glo academy';
   body.append(elem);
 };
