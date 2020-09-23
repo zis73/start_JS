@@ -105,6 +105,8 @@ class AppData{
 
     start.style.display = 'none';
     cancel.style.display = 'block';
+    
+    periodSelect.addEventListener('input', this.changePeriod.bind(this));
 
   }
   reset() {
@@ -238,6 +240,9 @@ class AppData{
   calcPeriod() {
     return this.budgetMonth * periodSelect.value;
   }
+  changePeriod() {
+    incomePeriodValue.value = this.calcPeriod();
+  }
   eventListeners() {
     salaryAmount.addEventListener('input', function() {
       if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
@@ -250,7 +255,7 @@ class AppData{
     cancel.addEventListener('click', this.reset.bind(this));
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     incomePlus.addEventListener('click', this.addIncomeBlock);
-    periodSelect.addEventListener('input', function() {
+    periodSelect.addEventListener('change', function() {
       periodAmount.textContent = periodSelect.value;
     });
   }
@@ -277,5 +282,3 @@ class AppData{
 }
 const appData = new AppData();
 appData.eventListeners();
-
-

@@ -13,8 +13,6 @@ class Second extends First{
   }
 }
 
-const check1 = new First();
 const check2 = new Second();
 
-check1.hello();
 check2.hello();
