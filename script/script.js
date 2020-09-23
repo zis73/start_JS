@@ -167,7 +167,6 @@ AppData.prototype.addIncomeBlock = function() {
 });
   incomeItems[0].parentNode.insertBefore(cloneIncomeItem,incomePlus);
   incomeItems = document.querySelectorAll('.income-items');
-  this.validMethod();
 
   if(incomeItems.length === 3){
     incomePlus.style.display = 'none';

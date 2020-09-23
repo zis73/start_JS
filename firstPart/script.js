@@ -1,6 +1,6 @@
 'use strict';
 
-function DomElement(selector, height = '200px', width = '200px', bg = 'green', fontSize = '25px'){
+function DomElement(selector = '.block', height = '200px', width = '200px', bg = 'green', fontSize = '25px'){
   this.selector = selector;
   this.height = height;
   this.width = width;
@@ -21,7 +21,7 @@ DomElement.prototype.checkSelector = function() {
     elem.id = select;
   }
 
-  elem.style.cssText=`background-color: green;
+  elem.style.cssText = `background-color: yellow;
     width: 200px;
     height: 200px;
     font-size: 25px;
@@ -30,10 +30,10 @@ DomElement.prototype.checkSelector = function() {
   body.append(elem);
 };
 
-const domElement = new DomElement('#block');
+const domElement = new DomElement('.block','400px', '300px', 'blue', '45px');
 
 domElement.checkSelector();
-console.log(domElement);
+
 
 
 
