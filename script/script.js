@@ -157,6 +157,7 @@ class AppData{
   });
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem,expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
+    this.validMethod();
     if(expensesItems.length === 3){
       expensesPlus.style.display = 'none';
     }
@@ -168,7 +169,7 @@ class AppData{
   });
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem,incomePlus);
     incomeItems = document.querySelectorAll('.income-items');
-
+    this.validMethod();
     if(incomeItems.length === 3){
       incomePlus.style.display = 'none';
     }
@@ -244,6 +245,7 @@ class AppData{
     incomePeriodValue.value = this.calcPeriod();
   }
   eventListeners() {
+    this.validMethod();
     salaryAmount.addEventListener('input', function() {
       if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
         start.style.pointerEvents = '';
