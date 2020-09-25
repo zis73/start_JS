@@ -110,8 +110,13 @@ class AppData{
 
   }
   reset() {
-    let resultTotal = document.querySelectorAll('.result-total');
+    let cloneAppData = new AppData();
 
+    let resultTotal = document.querySelectorAll('.result-total');
+    
+    for (let key in cloneAppData) {
+      this[key] = cloneAppData[key];
+  }
     periodSelect.value = 1;
     periodAmount.textContent = periodSelect.value;
 
@@ -280,7 +285,6 @@ class AppData{
             });
       });
   }   
-//  appData.validMethod();
 }
 const appData = new AppData();
 appData.eventListeners();
