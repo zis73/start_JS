@@ -48,7 +48,6 @@ const isNumber = function(n) {
     let str = arr.map(function(upper) {
       return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
     });
-    console.log(str.join(', '));
   },
   blockInput = () => {
     const blockData = document.querySelector('.data'),
@@ -107,6 +106,7 @@ class AppData{
     cancel.style.display = 'block';
     
     periodSelect.addEventListener('input', this.changePeriod.bind(this));
+    cancel.addEventListener('click', this.reset.bind(this));
 
   }
   reset() {
@@ -259,7 +259,6 @@ class AppData{
       }
     });
     start.addEventListener('click', this.start.bind(this));
-    cancel.addEventListener('click', this.reset.bind(this));
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     incomePlus.addEventListener('click', this.addIncomeBlock);
     periodSelect.addEventListener('change', function() {
