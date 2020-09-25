@@ -103,10 +103,16 @@ AppData.prototype.start = function() {
   cancel.style.display = 'block';
 
   periodSelect.addEventListener('input', this.changePeriod.bind(this));
+  cancel.addEventListener('click', this.reset.bind(this));
 };
 AppData.prototype.reset = function() {
-  let resultTotal = document.querySelectorAll('.result-total');
+  let cloneAppData = new AppData();
 
+  let resultTotal = document.querySelectorAll('.result-total');
+  
+  for (let key in cloneAppData) {
+    this[key] = cloneAppData[key];
+}
   periodSelect.value = 1;
   periodAmount.textContent = periodSelect.value;
 
@@ -248,6 +254,7 @@ AppData.prototype.changePeriod = function() {
   incomePeriodValue.value = this.calcPeriod();
 };
 AppData.prototype.eventListeners = function() {
+  this.validMethod();
   salaryAmount.addEventListener('input', function() {
     if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
       start.style.pointerEvents = '';
@@ -255,37 +262,37 @@ AppData.prototype.eventListeners = function() {
       start.style.pointerEvents = 'none';
     }
   });
-  AppData.prototype.validMethod = function() {
-    let inputName = document.querySelectorAll('[placeholder="Наименование"]'),
-    inputSum = document.querySelectorAll('[placeholder="Сумма"]');
-  
-    inputName.forEach(function (item) { 
-            item.addEventListener('input', function () {
-                item.value = item.value.replace(/[^А-Яа-яЁё,.!? ]/i, '');
-            });
-    });
-    
-    inputSum.forEach(function (item) {
-        item.addEventListener('input', function () {
-            if(item.value === '0') {
-                item.value = item.value.replace(/[^1-9]/i, '');
-            }
-            item.value = item.value.replace(/[^0-9]/i, '');
-        });
-    });
-  };
+  start.addEventListener('click', this.start.bind(this));
 
-  appData.validMethod();
-  
-  start.addEventListener('click', appData.start.bind(appData));
-  cancel.addEventListener('click', appData.reset.bind(appData));
-  expensesPlus.addEventListener('click', appData.addExpensesBlock);
-  incomePlus.addEventListener('click', appData.addIncomeBlock);
-  periodSelect.addEventListener('input', function() {
-    periodAmount.textContent = periodSelect.value;
+  expensesPlus.addEventListener('click', this.addExpensesBlock.bind(this));
+
+  incomePlus.addEventListener('click', this.addIncomeBlock.bind(this));
+
+  periodSelect.addEventListener('input', function () {
+      periodAmount.textContent = periodSelect.value;
   });
 };
+AppData.prototype.validMethod = function() {
+  let inputName = document.querySelectorAll('[placeholder="Наименование"]'),
+  inputSum = document.querySelectorAll('[placeholder="Сумма"]');
+  
+  inputName.forEach(function (item) { 
+          item.addEventListener('input', function () {
+              item.value = item.value.replace(/[^А-Яа-яЁё,.!? ]/i, '');
+          });
+  });
+    
+  inputSum.forEach(function (item) {
+      item.addEventListener('input', function () {
+          if(item.value === '0') {
+              item.value = item.value.replace(/[^1-9]/i, '');
+          }
+          item.value = item.value.replace(/[^0-9]/i, '');
+      });
+  });
+};
+
+ // appData.validMethod();
+
 const appData = new AppData();
 appData.eventListeners();
-
-
