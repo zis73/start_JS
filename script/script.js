@@ -28,28 +28,47 @@ let expensesItems = document.querySelectorAll('.expenses-items'),
   incomeItems = document.querySelectorAll('.income-items');
   start.style.pointerEvents = 'none';
 
-const isNumber = function(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-},
-  isString = function(n) {
-    if (n !== null) {
-      if(n.trim().length > 0 && !isNumber(n)) {
-        for (let i = 0; i < n.length; i++) {
-          if (isNumber(n[i])) {
-              return false;
+const validMethod = function() {
+  let inputName = document.querySelectorAll('[placeholder="Наименование"]'),
+  inputSum = document.querySelectorAll('[placeholder="Сумма"]');
+  
+  inputName.forEach(function (item) { 
+          item.addEventListener('input', function () {
+              item.value = item.value.replace(/[^А-Яа-яЁё,.!? ]/i, '');
+          });
+  });
+    
+  inputSum.forEach(function (item) {
+      item.addEventListener('input', function () {
+          if(item.value === '0') {
+              item.value = item.value.replace(/[^1-9]/i, '');
           }
-        }
-        return true;
-      }
-    }
-    return false;
+          item.value = item.value.replace(/[^0-9]/i, '');
+        });
+  });
+},
+  isNumber = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
   },
-  toUpp = function(arr) {
+  isString = function(n) {
+      if (n !== null) {
+        if(n.trim().length > 0 && !this.isNumber(n)) {
+          for (let i = 0; i < n.length; i++) {
+            if (this.isNumber(n[i])) {
+                return false;
+            } 
+          }
+          return true;
+        }
+      }
+      return false;
+    },
+  toUpp  = function(arr) {
     let str = arr.map(function(upper) {
       return upper.charAt(0).toUpperCase(arr) + upper.substring(1);
     });
   },
-  blockInput = () => {
+  blockInput = function() {
     const blockData = document.querySelector('.data'),
       inputs = blockData.querySelectorAll('[type="text"]');
     inputs.forEach((item) => {
@@ -57,16 +76,13 @@ const isNumber = function(n) {
     });
 
   },
-  unBlockInput = () => {
+  unBlockInput = function() {
     const blockData = document.querySelector('.data'),
       inputs = blockData.querySelectorAll('[type="text"]');
     inputs.forEach((item) => {
       item.disabled = false;
       item.value = '';
     });
-  },
-  changePeriod = function() {
-    incomePeriodValue.value = this.calcPeriod();
   };
 class AppData{
   constructor(){
@@ -120,7 +136,7 @@ class AppData{
     periodSelect.value = 1;
     periodAmount.textContent = periodSelect.value;
 
-    unBlockInput();
+    this.unBlockInput();
     resultTotal.forEach(function (item){
       item.value = '';
     });
@@ -155,28 +171,29 @@ class AppData{
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
     incomePeriodValue.value = this.calcPeriod();
   }
+  addIncomeBlock() {
+    let cloneIncomeItem = incomeItems[0].cloneNode(true);
+    cloneIncomeItem.querySelectorAll('input').forEach(item => {
+      item.value = '';
+  });
+    incomeItems[0].parentNode.insertBefore(cloneIncomeItem,incomePlus); 
+    validMethod();  
+    incomeItems = document.querySelectorAll('.income-items');
+    
+    if(incomeItems.length === 3){
+      incomePlus.style.display = 'none';
+    }
+  }
   addExpensesBlock() {
-    const cloneExpensesItem = expensesItems[0].cloneNode(true);
-    cloneExpensesItem.querySelectorAll('input').forEach(function (item) {
+    let cloneExpensesItem = expensesItems[0].cloneNode(true);
+    cloneExpensesItem.querySelectorAll('input').forEach( item => {
       item.value = '';
   });
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem,expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
-    this.validMethod();
+    validMethod(); 
     if(expensesItems.length === 3){
       expensesPlus.style.display = 'none';
-    }
-  }
-  addIncomeBlock() {
-    const cloneIncomeItem = incomeItems[0].cloneNode(true);
-    cloneIncomeItem.querySelectorAll('input').forEach(function (item) {
-      item.value = '';
-  });
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItem,incomePlus);
-    incomeItems = document.querySelectorAll('.income-items');
-    this.validMethod();
-    if(incomeItems.length === 3){
-      incomePlus.style.display = 'none';
     }
   }
   getExpenses() {
@@ -191,7 +208,7 @@ class AppData{
       this.expensesMonth += this.expenses[key];
     }
   }
-  getIncome() {
+  getIncome(){
     incomeItems.forEach(item => {
       const itemIncome = item.querySelector('.income-title').value,
         cashIncome = item.querySelector('.income-amount').value;
@@ -250,7 +267,7 @@ class AppData{
     incomePeriodValue.value = this.calcPeriod();
   }
   eventListeners() {
-    this.validMethod();
+    validMethod();
     salaryAmount.addEventListener('input', function() {
       if (isNumber(salaryAmount.value.trim()) && salaryAmount.value !== '') {
         start.style.pointerEvents = '';
@@ -265,25 +282,7 @@ class AppData{
       periodAmount.textContent = periodSelect.value;
     });
   }
-  validMethod() {
-      let inputName = document.querySelectorAll('[placeholder="Наименование"]'),
-      inputSum = document.querySelectorAll('[placeholder="Сумма"]');
-    
-      inputName.forEach(function (item) { 
-              item.addEventListener('input', function () {
-                  item.value = item.value.replace(/[^А-Яа-яЁё,.!? ]/i, '');
-              });
-      });
-      
-      inputSum.forEach(function (item) {
-          item.addEventListener('input', function () {
-              if(item.value === '0') {
-                  item.value = item.value.replace(/[^1-9]/i, '');
-              }
-              item.value = item.value.replace(/[^0-9]/i, '');
-            });
-      });
-  }   
 }
+
 const appData = new AppData();
 appData.eventListeners();
