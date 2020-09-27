@@ -292,7 +292,5 @@ AppData.prototype.validMethod = function() {
   });
 };
 
- // appData.validMethod();
-
 const appData = new AppData();
 appData.eventListeners();
