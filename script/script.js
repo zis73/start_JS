@@ -136,7 +136,7 @@ class AppData{
     periodSelect.value = 1;
     periodAmount.textContent = periodSelect.value;
 
-    this.unBlockInput();
+    unBlockInput();
     resultTotal.forEach(function (item){
       item.value = '';
     });
