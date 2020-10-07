@@ -317,7 +317,7 @@ class AppData{
       depositPercent.style.display = 'inline-block';
     } else{
       depositPercent.style.display = '';
-      depositPercent.style.display = valueSelect;
+      depositPercent.value = valueSelect;
     }
   }
   depositHandler(){
@@ -358,3 +358,5 @@ class AppData{
 
 const appData = new AppData();
 appData.eventListeners();
+
+
